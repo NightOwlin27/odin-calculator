@@ -39,6 +39,10 @@ button {
     border-radius: 7px;
 }
 
+button:hover {
+    background-color: lightgray;
+}
+
 div {
     display: flex;
     border: solid green 2px;

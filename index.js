@@ -1,48 +1,75 @@
 // Grabbed Elements ------------------------------
 const display = document.querySelector(".display");
 const clear = document.querySelector(".ac");
-const plusMinusOp = document.querySelector(".PM .Op");
-const remainderOp = document.querySelector(".Remainder .Op");
-const additionOp = document.querySelector(".Addition .Op");
-const subtractionOp = document.querySelector(".Subtraction .Op");
-const multiplyOp = document.querySelector(".Multiply .Op");
-const divisionOp = document.querySelector(".Division .Op");
-const equalsOp = document.querySelector(".Equals .Op")
-const zero = document.querySelector(".zero");
-const one = document.querySelector(".one");
-const two = document.querySelector(".two");
-const three = document.querySelector(".three");
-const four = document.querySelector(".four");
-const five = document.querySelector(".five");
-const six = document.querySelector(".six");
-const seven = document.querySelector(".seven");
-const eight = document.querySelector(".eight");
-const nine = document.querySelector(".nine");
-const period = document.querySelector(".display");
+const plusMinusOp = document.querySelector(".pm .op");
+const remainderOp = document.querySelector(".remainder .op");
+const additionOp = document.querySelector(".addition .op");
+const subtractionOp = document.querySelector(".subtraction .op");
+const multiplyOp = document.querySelector(".multiply .op");
+const divisionOp = document.querySelector(".division .op");
+const equalsOp = document.querySelector(".equals .op")
+const zero = document.querySelector(".num .zero");
+const one = document.querySelector(".num .one");
+const two = document.querySelector(".num .two");
+const three = document.querySelector(".num .three");
+const four = document.querySelector(".num .four");
+const five = document.querySelector(".num .five");
+const six = document.querySelector(".num .six");
+const seven = document.querySelector(".num .seven");
+const eight = document.querySelector(".num .eight");
+const nine = document.querySelector(".num .nine");
+const period = document.querySelector(".period");
+
+const numbers = document.querySelectorAll(".num");
+const operators = document.querySelectorAll('.op')
+
+// Variables-------------------------------------
+let arr = [];
+// could always make a second arr and have the equals event list
+// push that value into the second and then have the op function work it out
+let value = '';
+let operator = '';
 
 
 // eventListeners-------------------------------
-
-one.addEventListener('click', () =>  += display.textContent)
-
-additionOp.addEventListener('click', function() {
-
+numbers.forEach(num => {
+    num.addEventListener('click', () => {
+        value += num.textContent
+        display.textContent = value
+        // arr.push(value);
+        // console.log(arr);
+    })  
 })
 
-equalsOp.addEventListener('click', () => operate())
+operators.forEach(op => {
+    op.addEventListener('click', () => {
+        operator = op.textContent
+        arr.push(value);
+        console.log(arr);
+        value = "";
+        display.textContent = value; 
+    })
+})
 
+equalsOp.addEventListener('click', () => {
+    arr.push(value);
+    console.log(arr);
+    operate(arr);
+    // If array does not contain two values, clear. This is to prevent adding arr elements by continuously pressing equals sign.
+})
 
-// Variables-------------------------------------
+clear.addEventListener('click', () => {
+    value = "";
+    display.textContent = value;
+})
 
-let num1 = 0;
-let num2 = 0;
-let operator = "";
-let displayValue = "";
+// Operations -----------------------------------
 
+function add (a, b) {
+   return a + b;
+}
 
-// Operators -----------------------------------
-
-const add = (a, b) => a + b;
+console.log(add);
 
 const subtract = (a, b) => a - b;
 
@@ -50,17 +77,20 @@ const multiply = (a, b) => a * b;
 
 const divide = (a, b) => a / b;
 
+const remainder = (a, b) => a % b;
 
 // Operator Main Function ----------------------
 
-function operate (num1, num2, operator) {
+function operate (arr, operator) {
+    let num1 = +arr[0];
+    let num2 = +arr[1];
         if (operator === additionOp) {
             add(num1, num2);
-        } else (operator === subtractionOp) {
+        } else if (operator === subtractionOp) {
             subtract(num1, num2);
-        } else (operator === multiplyOp) {
+        } else if (operator === multiplyOp) {
             multiply(num1, num2);
-        } else (operator === divisionOp) {
+        } else if (operator === divisionOp) {
             divide(num1, num2);
         }
 }
