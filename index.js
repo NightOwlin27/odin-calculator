@@ -71,8 +71,10 @@ function operate () {
             divide(num1, num2);
             console.log(op);
             display.textContent = sum;
-        }
-        
+        }  
+        arr.splice(0, 3, sum);
+        value = null;
+        console.log(arr);
 }
 
 
@@ -82,6 +84,7 @@ numbers.forEach(num => {
     num.addEventListener('click', () => {
 
         value += num.textContent;
+        console.log(value)
         display.textContent = value;
     })  
 })
@@ -98,6 +101,13 @@ operators.forEach(op => {
             value = null;
             arr.push(sum)
             console.log (arr);
+
+        } else if (operator === '+/-') {
+            value = -value;
+            arr.push(value)
+            console.log(arr);
+            display.textContent = value;
+            value = "";
 
         } else {
             if(value) {
