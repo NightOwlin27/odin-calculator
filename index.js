@@ -1,6 +1,7 @@
 // Grabbed Elements ------------------------------
 const display = document.querySelector(".display");
 const clear = document.querySelector(".ac");
+
 const plusMinusOp = document.querySelector(".pm .op");
 const percentageOp = document.querySelector(".percentage .op");
 const additionOp = document.querySelector(".addition .op");
@@ -8,6 +9,7 @@ const subtractionOp = document.querySelector(".subtraction .op");
 const multiplyOp = document.querySelector(".multiply .op");
 const divisionOp = document.querySelector(".division .op");
 const equalsOp = document.querySelector(".equals")
+
 const zero = document.querySelector(".num .zero");
 const one = document.querySelector(".num .one");
 const two = document.querySelector(".num .two");
@@ -70,32 +72,42 @@ function operate () {
             console.log(op);
             display.textContent = sum;
         }
-        // } else if (op === '%') {
-        //     remainder(num1);
-        //     console.log(op);
-        //     display.textContent = sum;
-        // }
+        
 }
 
 
 // eventListeners-------------------------------
+
 numbers.forEach(num => {
     num.addEventListener('click', () => {
-        value += num.textContent
-        display.textContent = value
-        // arr.push(value);
-        // console.log(arr);
+
+        value += num.textContent;
+        display.textContent = value;
     })  
 })
 
 operators.forEach(op => {
     op.addEventListener('click', () => {
-        operator = op.textContent
-        arr.push(value);
-        arr.push(operator)
-        console.log(arr);
-        value = "";
-        display.textContent = value; 
+
+        operator = op.textContent;
+
+        if (operator === '%') {
+            let num = +value;
+            percentage(num);
+            display.textContent = sum;
+            value = null;
+            arr.push(sum)
+            console.log (arr);
+
+        } else {
+            if(value) {
+                arr.push(value)
+            }
+            arr.push(operator)
+            console.log(arr);
+            value = "";
+            display.textContent = value; 
+        }
     })
 })
 
