@@ -10,45 +10,66 @@
 }
 
 body {
- background-color: rgb(39, 36, 36);
- display: flex;
- justify-content: center;
- margin-top: 30vh;
-}
-
-main {
-    background-color: white;
-    border: solid blue 2px;
-    width: 25rem;
-    height: 32.5rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 30vh;
+    background-color: rgb(39, 36, 36);
     
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30rem;
+    height: 38rem;
+    border-radius: 10%;
+    border: solid whitesmoke 12px;
+    background-color: rgb(232, 141, 13);  
+}
+
 .display {
-    border: 2px solid black;
-    height: 6rem;
-    font-size: 5rem;
+    width: 25rem;
+    height: auto;
+    border: 5px solid black;
+    border-radius: 1rem;
     text-align: end;
+    font-size: 5rem;
+    background-color: white;
+}
+
+div {
+    display: flex;
+    justify-content: stretch;
 }
 
 button {
-    border: solid black 3px;
     width: 6rem;
     height: 5rem;
-    font-size: 3rem;
+    border: solid black 3px;
     border-radius: 7px;
+    font-size: 3rem;
+    background-color: whitesmoke;
 }
 
 button:hover {
     background-color: lightgray;
 }
 
-div {
-    display: flex;
-    border: solid green 2px;
-    justify-content: stretch;
+
+.ac,
+.equals {
+    background-color: blueviolet;
+    color: white;
 }
 
 .zero {
     width: 12.2rem;
 }
+
+.op {
+    background-color: rgb(39, 36, 36);
+    color: whitesmoke;
+}
+

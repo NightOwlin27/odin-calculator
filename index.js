@@ -29,11 +29,9 @@ const operators = document.querySelectorAll('.op')
 // Variables-------------------------------------
 
 let arr = [];
-// could always make a second arr and have the equals event list
-// push that value into the second and then have the op function work it out
-let value = '';
 let operator = '';
 let sum = '';
+let value = '';
 
 
 // Operations -----------------------------------
@@ -52,29 +50,33 @@ const percentage = (a) => sum = a / 100;
 // Operator Main Function ----------------------
 
 function operate () {
+
     let num1 = +arr[0];
     let op = arr[1];
     let num2 = +arr[2];
-        if (op === '+') {
+    
+    if (num1 === 0 && 
+        num2 === 0 && 
+        op === '/') {
+        display.textContent = "Nice Try!";
+        arr = [];
+        value = "";
+        } else if (op === '+') {
             add(num1, num2);
-            console.log(op);
             display.textContent = sum;
         } else if (op === '-') {
             subtract(num1, num2);
-            console.log(op);
             display.textContent = sum;
         } else if (op === 'x') {
             multiply(num1, num2);
-            console.log(op);
             display.textContent = sum;
         } else if (op === '/') {
             divide(num1, num2);
-            console.log(op);
             display.textContent = sum;
         }  
+        
         arr.splice(0, 3, sum);
         value = null;
-        console.log(arr);
 }
 
 
@@ -82,9 +84,7 @@ function operate () {
 
 numbers.forEach(num => {
     num.addEventListener('click', () => {
-
         value += num.textContent;
-        console.log(value)
         display.textContent = value;
     })  
 })
@@ -93,43 +93,37 @@ operators.forEach(op => {
     op.addEventListener('click', () => {
 
         operator = op.textContent;
-
-        if (operator === '%') {
+    
+         if (operator === '%') {
             let num = +value;
             percentage(num);
             display.textContent = sum;
             value = null;
             arr.push(sum)
-            console.log (arr);
 
         } else if (operator === '+/-') {
             value = -value;
             arr.push(value)
-            console.log(arr);
             display.textContent = value;
             value = "";
 
         } else {
-            if(value) {
+            if (value) {
                 arr.push(value)
             }
             arr.push(operator)
-            console.log(arr);
             value = "";
-            display.textContent = value; 
         }
     })
 })
 
 equalsOp.addEventListener('click', () => {
     arr.push(value);
-    console.log(arr);
     operate(arr);
-    // If array does not contain two values, clear. This is to prevent adding arr elements by continuously pressing equals sign.
 })
 
 clear.addEventListener('click', () => {
     arr = [];
     value = "";
-    display.textContent = value;
+    display.textContent = "0";
 })
